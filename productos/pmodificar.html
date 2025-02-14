@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/font/bootstrap-icons.scss" rel="stylesheet">
+        <link href="/css/font/bootstrap-icons.json" rel="stylesheet">
+        <link href="/css/font/bootstrap-icons.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
+        <title>Electro</title>
+        <!---<link rel="icon" rel="stylesheet" href="img/comillas.png">--->
+    </head>
+
+    <body>
+        <!----Navbar-->
+    <nav class="navbar navbar-expand-sm fixed-top" style="background: orange; ">
+        <a class="navbar-brand mb-2" th:href="#">Electro</a>
+        <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+          <li class="nav-items"><a href="#" class="link nav-link">Cerrar Sesión</a></li>
+        </ul>
+      </nav>
+  
+    <!----Sidebar-->
+    <button class="btn btn-warning mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">Menu</button>
+    <div class="offcanvas offcanvas-start bg-light" id="demo" style="width: 250px; color:white ;">
+      <div class="offcanvas-header" style="background:orange ;">
+        <img src="images/icon.PNG" class="icono rounded-circle" alt="">
+        <h1 class="offcanvas-title">Electro</h1>
+        <button type="button" class="btn-close text-reset btn-warning" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul>
+          <li class="m-2">
+            <a href="usuario.html" class="link-dark" style="text-decoration-line: none;">
+              <i class="bi bi-person-bounding-box m-2"></i>
+              Usuarios
+            </a>
+          </li>
+          <li class="m-2">
+            <a href="marcas.html" class="link-dark" style="text-decoration-line: none;">
+              <i class="bi bi-front m-2"></i>
+              Marcas
+            </a>
+          </li>
+          <li class="m-2">
+            <a href="categorias.html" class="link-dark " style="text-decoration-line: none;">
+              <i class="bi bi-card-list m-2"></i>
+              Categorias
+            </a>
+          </li>
+          <li class="m-2">
+            <a href="imagens.html" class="link-dark " style="text-decoration-line: none;">
+              <i class="bi bi-aspect-ratio-fill m-2"></i>
+              Imagenes
+            </a>
+          </li>
+          <li class="m-2">
+            <a href="productos.html" class="link-dark " style="text-decoration-line: none;">
+              <i class="bi bi-bag-check-fill m-2"></i>
+              Productos
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+        <!---Contenido-->
+        <main class="container">
+            <h3 class="mb-3">Productos</h3>
+
+            <!-----Formulario-->
+               <form action="/productos/update" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="producto.id"> 
+                <div class="row">
+                    <h5 class="title" id="registromodal">Modificar Producto</h5> 
+                    <div class="col-xl-5 has-validation mt-3">
+                        <label for="nom-user" class="form-label"><span>*</span> Categoria</label>
+                        <select class="form-select" name="categoria" id="categoria" >
+                            <option each="categoria : categorias" value="categoria.id" text="categoria.nombrecategoria"name="nombrecategoria" ></option>
+                        </select>
+                    </div>
+                    <div class="col-xl-5 has-validation mt-3">
+                        <label for="nom-user" class="form-label"><span>*</span> Marca</label>
+                        <select class="form-select" name="marca" id="marca">
+                            <option each="marca : marcas" value="marca.id" text="marca.nombremarca" name="nombremarca" ></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 has-validation mt-3">
+                        <label for="nom-user" class="form-label"><span>*</span> Nombre</label>
+                        <input for="nom-user" type="text" class="form-control" autocomplete="off" value="producto.nombreproducto" name="nombreproducto" >
+                    </div>
+                    <div class="col-xl-5 has-validation mt-3">
+                        <label for="nom-user" class="form-label"><span>*</span> Detalles</label>
+                        <input for="nom-user" type="text" class="form-control" autocomplete="off" value="producto.detalle" name="detalle" ></input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 has-validation mt-3">
+                        <label for="nom-user" class="form-label"><span>*</span> Imagen1 </label>
+                        <input for="nom-user" type="file" class="form-control" autocomplete="off" id="img" name="img" >
+                    </div>
+                    <div class="col-xl-5 has-validation mt-3">
+                        <label for="nom-user" class="form-label"><span>*</span> Caracteristicas</label>
+                        <input for="nom-user" type="text" class="form-control" autocomplete="off" value="producto.caracteristica" name="caracteristica" ></input>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-xl-5 has-validation mt-3">
+                            <label for="apell-user" class="form-label"><span>*</span>Precio</label>
+                            <input for="apell-user" type="number" class="form-control" autocomplete="off" value="producto.precio" name="precio" >
+                        </div>
+                        <div class="col-xl-5 has-validation mt-3">
+                            <label for="nom-user" class="form-label"><span>*</span> Componentes</label>
+                            <input for="nom-user" type="text" class="form-control" autocomplete="off" value="producto.componente" name="componente" ></input>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-5 has-validation mt-3">
+                            <label for="date-user" class="form-label"><span>*</span> Fecha</label>
+                            <input for="date-user" type="date" class="form-control" autocomplete="off" value="producto.fecha" name="fecha" >
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+
+                    </div>
+
+                </div>
+                <div class="m-3">
+                   <a href="producto.html" class="btn btn-secondary ">Cerrar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+
+
+
+
+        </main>
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+    </body>
+
+
+</html>
